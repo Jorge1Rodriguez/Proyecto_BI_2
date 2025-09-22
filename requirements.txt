@@ -10,3 +10,4 @@ pandas
 pytest
 scikit-learn
 seaborn
+joblib
