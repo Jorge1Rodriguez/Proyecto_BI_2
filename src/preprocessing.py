@@ -113,6 +113,9 @@ def preprocess_data(
     #   - In order to prevent overfitting and avoid Data Leakage you must use only
     #     working_train_df DataFrame to fit the SimpleImputer and then use the fitted
     #     model to transform all the datasets.
+
+
+
     simple_imputer = SimpleImputer(strategy='median')
     imputed_train = simple_imputer.fit_transform(working_train_df)
     imputed_val = simple_imputer.transform(working_val_df)
@@ -121,6 +124,10 @@ def preprocess_data(
     working_train_df = pd.DataFrame(imputed_train, columns=working_train_df.columns, index=working_train_df.index)
     working_val_df = pd.DataFrame(imputed_val, columns=working_val_df.columns, index=working_val_df.index)
     working_test_df = pd.DataFrame(imputed_test, columns=working_test_df.columns, index=working_test_df.index)
+
+
+    
+
 
 
     # 4. TODO Feature scaling with Min-Max scaler. Apply this to all the columns.
@@ -139,6 +146,7 @@ def preprocess_data(
     working_train_df = pd.DataFrame(scaled_train, columns=working_train_df.columns, index=working_train_df.index)
     working_val_df = pd.DataFrame(scaled_val, columns=working_val_df.columns, index=working_val_df.index)
     working_test_df = pd.DataFrame(scaled_test, columns=working_test_df.columns, index=working_test_df.index)
+
 
 
     return working_train_df.values, working_val_df.values, working_test_df.values
