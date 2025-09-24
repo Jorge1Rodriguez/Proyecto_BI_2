@@ -86,7 +86,7 @@ pip install -r requirements.txt
 ## ⚙️ Model Usage and Training
 
 - **Pre-trained model available:** The project includes a trained Random Forest model stored in `models/random_forest_model.pkl` ready for inference and prediction.
-is available for download here: https://drive.google.com/file/d/1L1StdX3kAllTcyV9W1F44U6OMw7ImnAH/view?usp=sharing
+is available for download here: https://drive.google.com/file/d/1xBAUau0HH482_VZZD2231q2XAt9jXefs/view?usp=sharing
 - **Retrain if desired:** Users can customize and retrain the model by adjusting hyperparameters in the RandomizedSearchCV section of the notebook (Section 3.7).
 
 ---
