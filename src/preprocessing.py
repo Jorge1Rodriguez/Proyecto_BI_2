@@ -148,7 +148,6 @@ def preprocess_data(
     working_test_df = pd.DataFrame(scaled_test, columns=working_test_df.columns, index=working_test_df.index)
 
 
-
     return working_train_df.values, working_val_df.values, working_test_df.values
 
 

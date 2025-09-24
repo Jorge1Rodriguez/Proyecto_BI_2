@@ -1,61 +1,132 @@
-# Sprint project 02
-> Home Credit Default Risk
+# Home Credit Default Risk Prediction
 
-## The Business problem
+## 📋 Project Overview
 
-This is a binary Classification task: we want to predict whether the person applying for a home credit will be able to repay their debt or not. Our model will have to predict a 1 indicating the client will have payment difficulties: he/she will have late payment of more than X days on at least one of the first Y installments of the loan in our sample, 0 in all other cases.
+This project implements a machine learning pipeline to predict loan default risk as a binary classification problem. The goal is to predict whether loan applicants will have difficulties repaying their loans using various applicant features. The evaluation metric used is the Area Under the Receiver Operating Characteristic Curve (ROC AUC).
 
-We will use [Area Under the ROC Curve](https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc?hl=es_419) as the evaluation metric, so our models will have to return the probabilities that a loan is not paid for each input data.
+---
 
-## About the data
+## 🎯 Problem Statement
 
-The original dataset is composed of multiple files with different information about loans taken. In this project, we will work exclusively with the primary files: `application_train_aai.csv` and `application_test_aai.csv`.
+The task is to predict whether a person applying for a home credit will experience payment difficulties.
 
-You don't have to worry about downloading the data, it will be automatically downloaded from the `Project 02.ipynb` notebook in `Section 1 - Getting the data`.
+- **1**: The client will likely default (payment delay in installments)
+- **0**: The client will not have payment difficulties
 
-## Technical aspects
+---
 
-To develop this Machine Learning model you will have to primary interact with the Jupyter notebook provided, called `Project 02.ipynb`. This notebook will guide you through all the steps you have to follow and the code you have to complete in the different parts of the project, also marked with a `TODO` comment.
+## 📁 Project Structure
 
-The technologies involved are:
-- Python as the main programming language
-- Pandas for consuming data from CSVs files
-- Scikit-learn for building features and training ML models
-- Matplotlib and Seaborn for the visualizations
-- Jupyter notebooks to make the experimentation in an interactive way
-
-## Installation
-
-A `requirements.txt` file is provided with all the needed Python libraries for running this project. For installing the dependencies just run:
-
-```console
-$ pip install -r requirements.txt
+```
+project2/
+├── dataset/
+│   ├── application_train_aai.csv       # Training dataset (246,008 samples, 122 features)
+│   ├── application_test_aai.csv        # Test dataset with model predictions (61,503 samples)
+│   ├── application_test.csv            # Original copy of test dataset without model predictions (only this will be available in the repository)
+│   ├── HomeCredit_columns_description.csv # Feature descriptions
+├── models/
+│   └── random_forest_model.pkl              # Serialized best Random Forest model
+├── src/
+│   ├── __init__.py
+│   ├── config.py
+│   ├── data_utils.py
+│   └── preprocessing.py
+├── tests/
+│   ├── __init__.py
+│   ├── conftest.py
+│   ├── test_data_utils.py
+│   └── test_preprocessing.py
+├── Project 02.ipynb                    # Main Jupyter Notebook
+├── requirements.txt
+├── README.md
+└── venv/
 ```
 
-*Note:* We encourage you to install those inside a virtual environment.
+---
 
-## Code Style
+## 🚀 Getting Started
 
-Following a style guide keeps the code's aesthetics clean and improves readability, making contributions and code reviews easier. Automated Python code formatters make sure your codebase stays in a consistent style without any manual work on your end. If adhering to a specific style of coding is important to you, employing an automated to do that job is the obvious thing to do. This avoids bike-shedding on nitpicks during code reviews, saving you an enormous amount of time overall.
+### Prerequisites
 
-We use [Black](https://black.readthedocs.io/) and [isort](https://pycqa.github.io/isort/) for automated code formatting in this project, you can run it with:
+- Python 3.8 or higher
+- Jupyter Notebook or JupyterLab
 
-```console
-$ isort --profile=black . && black --line-length 88 .
+### Installation
+
+1. Clone or download the project:
+
+```bash
+git clone <repository-url>
+cd project2
 ```
 
-Wanna read more about Python code style and good practices? Please see:
-- [The Hitchhiker’s Guide to Python: Code Style](https://docs.python-guide.org/writing/style/)
-- [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
+2. Create and activate a virtual environment (recommended):
 
-## Tests
+```bash
+python -m venv venv
 
-We provide unit tests along with the project that you can run and check from your side the code meets the minimum requirements of correctness needed to approve. To run just execute:
+# Windows
+venv\Scripts\activate
 
-```console
-$ pytest tests/
+# macOS/Linux
+source venv/bin/activate
 ```
 
-If you want to learn more about testing Python code, please read:
-- [Effective Python Testing With Pytest](https://realpython.com/pytest-python-testing/)
-- [The Hitchhiker’s Guide to Python: Testing Your Code](https://docs.python-guide.org/writing/tests/)
+3. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+4. Open the Jupyter Notebook and execute each cell in order
+
+
+---
+
+## ⚙️ Model Usage and Training
+
+- **Pre-trained model available:** The project includes a trained Random Forest model stored in `models/random_forest_model.pkl` ready for inference and prediction.
+is available for download here: https://drive.google.com/file/d/1L1StdX3kAllTcyV9W1F44U6OMw7ImnAH/view?usp=sharing
+- **Retrain if desired:** Users can customize and retrain the model by adjusting hyperparameters in the RandomizedSearchCV section of the notebook (Section 3.7).
+
+---
+
+## 📊 Dataset Information
+
+### Training Dataset
+- `application_train_aai.csv` contains 246,008 samples with 122 features
+- Imbalanced classes with about 8% positive (default) and 92% negative
+
+### Test Dataset
+- `application_test_aai.csv` contains 61,503 samples and includes model predictions in the TARGET column
+- `application_test.csv` is an original copy of the test dataset without predictions, used for comparison purposes
+
+---
+
+## 🎯 Evaluation Metric
+
+The model's performance is measured using ROC AUC, which quantifies the model's ability to distinguish between the two classes regardless of classification thresholds. ROC AUC ranges from 0.5 (random guessing) to 1.0 (perfect classification).
+
+---
+
+## 🧪 Testing
+
+Run unit tests to validate the project implementation:
+
+```bash
+pytest tests/
+```
+
+---
+
+## 📝 Additional Notes
+
+- The data preprocessing pipeline includes outlier correction, encoding of categorical variables, missing value imputation, and feature scaling to prepare the data for modeling.
+- Care has been taken to avoid data leakage by fitting transformers only on training data.
+- The dataset size requires mindful resource and memory management.
+- Class imbalance is a factor to consider for evaluation and potential improvement.
+- Training time for the Random Forest and hyperparameter tuning can be substantial.
+
+---
+
+**The model is ready for immediate use, and the test prediction file is included.**
