@@ -209,7 +209,6 @@ __marimo__/
 # dataset
 dataset/application_train_aai.csv
 dataset/HomeCredit_columns_description.csv
-dataset/application_test_aai.csv
 
-#model
-model/random_forest_model.pkl
+
+

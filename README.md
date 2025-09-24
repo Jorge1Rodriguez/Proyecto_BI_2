@@ -22,9 +22,9 @@ project2/
 ├── dataset/
 │   ├── application_train_aai.csv       # Training dataset (246,008 samples, 122 features)
 │   ├── application_test_aai.csv        # Test dataset with model predictions (61,503 samples)
-│   ├── application_test.csv            # Original copy of test dataset without model predictions (only this will be available in the repository)
+│   ├── application_test.csv            # Original copy of test dataset without model predictions (for comparison purposes)
 │   ├── HomeCredit_columns_description.csv # Feature descriptions
-├── models/
+├── model/
 │   └── random_forest_model.pkl              # Serialized best Random Forest model
 ├── src/
 │   ├── __init__.py
@@ -86,7 +86,6 @@ pip install -r requirements.txt
 ## ⚙️ Model Usage and Training
 
 - **Pre-trained model available:** The project includes a trained Random Forest model stored in `models/random_forest_model.pkl` ready for inference and prediction.
-is available for download here: https://drive.google.com/file/d/1xBAUau0HH482_VZZD2231q2XAt9jXefs/view?usp=sharing
 - **Retrain if desired:** Users can customize and retrain the model by adjusting hyperparameters in the RandomizedSearchCV section of the notebook (Section 3.7).
 
 ---
